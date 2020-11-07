@@ -56,6 +56,28 @@ export const constantRoutes = [
   },
 
   {
+    path: '/customer',
+    component: Layout,
+    redirect: '/customer/customercrud',
+    name: '客户管理',
+    meta: { title: '客户管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'customercrud',
+        name: '客户',
+        component: () => import('@/views/erp/crm/customer'),
+        meta: { title: '客户', icon: 'table' }
+      },
+      {
+        path: 'customercare',
+        name: '客户关怀',
+        component: () => import('@/views/erp/crm/customer'),
+        meta: { title: '客户关怀', icon: 'table' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
