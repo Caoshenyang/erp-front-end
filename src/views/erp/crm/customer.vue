@@ -38,7 +38,7 @@ export default {
       total: 0,
       page: 1,
       limit: 10,
-      teacherQuery: {
+      customerQuery: {
         custoemrName: "",
         type: "",
         begin: "",
@@ -53,10 +53,10 @@ export default {
     //获取讲师列表
     getList(page = 1) {
       this.page = page
-      customer.getCustomerPageListCondition(this.page, this.limit, this.customerQuery)
+      customer.getCustomerPageList(this.page, this.limit, this.customerQuery)
         .then((response) => {
           //请求成功返回数据
-          this.tableData = response.data.rows;
+          this.list = response.data.rows;
           this.tatal = response.data.total;
         })
         .catch((error) => {
@@ -64,7 +64,7 @@ export default {
         }); //请求失败
     },
     resetData() {
-      this.teacherQuery = {};
+      this.customerQuery = {};
       this.getList();
     },
     toggleSelection(rows) {
