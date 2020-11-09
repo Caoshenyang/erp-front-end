@@ -41,17 +41,20 @@
       <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
       <breadcrumb class="breadcrumb-container" />
     </div>
+    <!-- tagView -->
     <div style="height:30px;width:100%; box-shadow: 0 1px 4px rgba(0,21,41,.08);padding: 3px 15px">
-      <el-scrollbar style="height:100%">
+      <el-scrollbar :vertical="false"  class="scroll-container" style="width:100%"  >
         <el-tag
+        color="#fff"
         size="small"
         style="margin-right:5px"
         v-for="tag in tags"
         :key="tag.name"
-        closable
-        :type="tag.type"
+        :closable="tag.name !== 'home'"
         @close="handleClose(tag)"
+        
         >
+        <!-- {{tag.label}} @close="handleClose(tag, index)" @click="changeMenu(tag)" -->
         {{tag.name}}
       </el-tag>
       </el-scrollbar>
@@ -60,7 +63,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -73,7 +76,13 @@ export default {
     return {
       activeIndex: '1',
       tags: [
-        { name: '标签一', type: '' },
+        // {
+        //   path: '/',
+        //   name: 'home',
+        //   label: 'Dashboard',
+        //   icon: 'home'
+        // }
+        { name: '首页', type: '' },
         { name: '标签二', type: '' },
         { name: '标签三', type: '' },
         { name: '标签四', type: '' },
@@ -92,8 +101,8 @@ export default {
         { name: '标签16', type: '' },
         { name: '标签17', type: '' },
         { name: '标签18', type: '' },
-        { name: '标签19', type: '' },
-        { name: '标签20', type: '' },
+        // { name: '标签19', type: '' },
+        // { name: '标签20', type: '' },
       ],
     }
   },
@@ -101,12 +110,17 @@ export default {
     ...mapGetters([
       'sidebar',
       'avatar'
-    ])
+    ]),
+    // ...mapState({
+    //   tags: state => state.tab.tabsList
+    // })
+
   },
   methods: {
     handleClose(tag) {
       this.tags.splice(this.tags.indexOf(tag), 1);
     },
+
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
@@ -119,6 +133,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.scroll-container {
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  ::v-deep {
+    .el-scrollbar__bar {
+      bottom: 0px;
+    }
+    .el-scrollbar__wrap {
+      height: 49px;
+    }
+  }
+}
 .navbar-menu {
   height: 50px; 
 }
@@ -221,6 +249,17 @@ export default {
 }
 .el-scrollbar .el-scrollbar__wrap .el-scrollbar__view{
    white-space: nowrap;
+}
+.el-tag{
+  border-radius: 2px;
+  border-color: #c0c4cc;
+  display: inline-block;
+  font-size: 12px;
+  color: #97a8be;
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 

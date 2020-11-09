@@ -38,6 +38,14 @@ export default {
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
+      console.log('---------------')
+      console.log(route)
+      console.log(this.$store.state)
+      let obj = {}
+      obj.label = route.name
+      this.$store.state.tab.tabsList.push(obj)
+
+      
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu

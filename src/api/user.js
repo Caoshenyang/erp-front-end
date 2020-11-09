@@ -2,7 +2,8 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/erp/user/login',
+    // url: '/erp/user/login',
+    url: '/vue-admin-template/user/login',
     method: 'post',
     data
   })
@@ -10,7 +11,8 @@ export function login(data) {
 
 export function getInfo(token) {
   return request({
-    url: '/erp/user/info',
+    // url: '/erp/user/info',
+    url: '/vue-admin-template/user/info',
     method: 'get',
     params: { token }
   })
@@ -18,7 +20,8 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/erp/user/logout',
+    // url: '/erp/user/logout',
+    url: '/vue-admin-template/user/logout',
     method: 'post'
   })
 }
