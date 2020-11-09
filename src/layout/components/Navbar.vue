@@ -171,15 +171,5 @@ export default {
   .el-scrollbar .el-scrollbar__wrap .el-scrollbar__view{
     white-space: nowrap;
   }
-  .el-tag{
-    border-radius: 2px;
-    border-color: #c0c4cc;
-    display: inline-block;
-    font-size: 12px;
-    color: #97a8be;
-    border-width: 1px;
-    border-style: solid;
-    box-sizing: border-box;
-    white-space: nowrap;
-  }
+
 </style>
